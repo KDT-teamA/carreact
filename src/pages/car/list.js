@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from "react";
-import {fetchCars} from "../api/SalesInfoService";
+import {fetchCars} from "../../api/CarApi";
 import {useNavigate} from "react-router-dom";
 
 function List() {
@@ -9,6 +9,7 @@ function List() {
     useEffect(() => {
         fetchCars()
             .then((res) => {
+                console.log(res.data)
                 setCars(res.data)
             })
             .catch((error) => {
@@ -17,7 +18,7 @@ function List() {
     }, []);
 
     const detail = (id) => {
-        navigate(`/car/detail/${id}`)
+        navigate(`/car/${id}`)
     };
 
     return (
@@ -45,11 +46,11 @@ function List() {
                         {cars.map((car, count) => (
                             <tr key={car.id} onClick={() => detail(car.id)}>
                                 <th>{count+1}</th>
-                                <th>{car.number}</th>
-                                <th>{car.name}</th>
-                                <th>{car.manufacturer}</th>
-                                <th>{car.mileage}</th>
-                                <th>{car.registration_date}</th>
+                                <td>{car.number}</td>
+                                <td>{car.name}</td>
+                                <td>{car.manufacturer}</td>
+                                <td>{car.mileage}</td>
+                                <td>{car.registration_date}</td>
                             </tr>
                         ))}
                         </tbody>

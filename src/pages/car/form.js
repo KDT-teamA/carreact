@@ -1,18 +1,13 @@
 import React, {useEffect, useState} from "react";
 import {useNavigate, useParams} from "react-router-dom";
-import {createCarById, fetchCarById} from "../api/SalesInfoService";
+import {createCar, deleteCar, fetchCarById, updateCarById} from "../../api/CarApi";
+import Swal from "sweetalert2";
 
 function Create() {
     const {id} = useParams()
 
     const navigate = useNavigate();
-    const [car, setCar] = useState({
-        number: "",
-        name: "",
-        manufacturer: "",
-        mileage: "",
-        registration_date: ""
-    });
+    const [car, setCar] = useState({});
 
     useEffect(() => {
         if (id) {
@@ -35,21 +30,27 @@ function Create() {
     };
 
     const handleSubmit = async () => {
-        console.log(car)
         try {
-            await createCarById(car)
-            alert("등록 성공");
-            navigate("/car/list")
+            const api = car.id ? () => updateCarById(car.id, car) : () => createCar(car)
+            const redirect = car.id ? `/car/${car.id}` : "/car/list"
+            api().then((res) => {
+                Swal.fire({
+                    title: res.data,
+                    icon: "success",
+                }).then(() => navigate(redirect))
+            })
         } catch (error) {
-            alert("등록 실패!");
-            console.error("차량 등록 실패:", error);
+            await Swal.fire({
+                title: "에러 발생",
+                icon: "error",
+            })
         }
     };
 
     return (
         <div className="container text-center">
             <div className="row">
-                <p className="h2 mt-5 mb-3">차량 등록</p>
+                <p className="h2 mt-5 mb-3">{car.id ? '차량 수정' : '차량 등록'}</p>
                 <div className="col-6 offset-3">
                     <form id="form">
                         <div className="form-floating mb-3">
@@ -73,7 +74,7 @@ function Create() {
                             <label htmlFor="registration_date">차량등록일</label>
                         </div>
                         <div id="AlertPlaceholder"></div>
-                        <button id="form_submit_btn" type="button" className="btn btn-primary me-2" onClick={handleSubmit}>등록</button>
+                        <button id="form_submit_btn" type="button" className="btn btn-primary me-2" onClick={handleSubmit}>{car.id ? '수정' : '등록'}</button>
                         <a href="/car/list" className="btn btn-outline-primary">취소</a>
                     </form>
                 </div>

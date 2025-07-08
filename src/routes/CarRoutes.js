@@ -4,16 +4,16 @@
 import React from "react";
 import {Route} from 'react-router-dom';
 
-import CarList from '../pages/list'
-import CarForm from '../pages/form'
-import CarDetail from '../pages/detail'
+import CarList from '../pages/car/list'
+import CarForm from '../pages/car/form'
+import CarDetail from '../pages/car/detail'
 
 function CarRoutes() {
     return (
         <>
             <Route path="/car/create" element={<CarForm/>}/>
             <Route path="/car/list" element={<CarList/>}/>
-            <Route path="/car/detail/:id" element={<CarDetail/>}/>
+            <Route path="/car/:id" element={<CarDetail/>}/>
             <Route path="/car/update/:id" element={<CarForm/>}/>
         </>
     )
