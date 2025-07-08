@@ -6,14 +6,17 @@ import {BrowserRouter} from "react-router-dom";
 import AppRouter from './routes/AppRoutes';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-import logo from './logo.svg';
 import './App.css';
+import Header from "./Component/Header";
+import Footer from "./Component/Footer";
 
 //함수명(파일명)으로 작업을 작성
 function App() {
   return (
       <BrowserRouter>
-        <AppRouter/>
+          <Header text="헤더"/>
+          <AppRouter/>
+          <Footer text="하단탭"/>
       </BrowserRouter>
   );
 }
