@@ -1,24 +1,20 @@
+//import는 외부 스크립트를 추가할 때
+//{}부분 함수를 추가할 때
+
+import React from 'react';
+import {BrowserRouter} from "react-router-dom";
+import AppRouter from './routes/AppRoutes';
+import 'bootstrap/dist/css/bootstrap.min.css';
+
 import logo from './logo.svg';
 import './App.css';
 
+//함수명(파일명)으로 작업을 작성
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+      <BrowserRouter>
+        <AppRouter/>
+      </BrowserRouter>
   );
 }
 
