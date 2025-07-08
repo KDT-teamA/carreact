@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from "react";
 import {fetchCars} from "../../api/CarApi";
-import {useNavigate} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 
 function List() {
     const navigate = useNavigate();
@@ -26,7 +26,7 @@ function List() {
             <div className="row mt-5">
                 <div className="col d-flex justify-content-evenly align-items-center">
                     <span className="h2">차량 리스트</span>
-                    <a href="/car/create" className="btn btn-primary btn-lg">차량 등록</a>
+                    <Link to="/car/create" className="btn btn-primary btn-lg">차량 등록</Link>
                 </div>
             </div>
             <div className="row mt-5">

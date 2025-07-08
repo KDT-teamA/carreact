@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from "react";
-import {useNavigate, useParams} from "react-router-dom";
+import {Link, useNavigate, useParams} from "react-router-dom";
 import {createCar, deleteCar, fetchCarById, updateCarById} from "../../api/CarApi";
 import Swal from "sweetalert2";
 
@@ -75,7 +75,7 @@ function Create() {
                         </div>
                         <div id="AlertPlaceholder"></div>
                         <button id="form_submit_btn" type="button" className="btn btn-primary me-2" onClick={handleSubmit}>{car.id ? '수정' : '등록'}</button>
-                        <a href="/car/list" className="btn btn-outline-primary">취소</a>
+                        <Link to="/car/list" className="btn btn-outline-primary">취소</Link>
                     </form>
                 </div>
             </div>

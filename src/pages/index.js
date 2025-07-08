@@ -1,4 +1,5 @@
 import React from "react";
+import {Link} from "react-router-dom";
 
 function Index() {
     return (
@@ -6,7 +7,7 @@ function Index() {
             <div className="container">
                 <div className="row">
                     <div className="col">
-                        <a href="/car/list" className="btn btn-primary">차량 목록</a>
+                        <Link to="/car/list" className="btn btn-primary">차량 목록</Link>
                     </div>
                 </div>
             </div>
